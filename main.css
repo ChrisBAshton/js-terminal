@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    background: #333333;
+}
+
+#json {
+    display: none;
+}
+
+.terminal {
+    position: relative;
+    color: white;
+    font-family: 'courier new', courier, serif;
+    font-size: 13px;
+    word-break: break-word;
+}
+
+#output {
+    overflow: scroll;
+    /* hide horizontal scrollbar on Windows */
+    overflow-x: hidden;
+    padding: 0 15px;
+}
+
+.terminal__cursor {
+    float: left;
+    padding: 7px;
+}
+
+#input {
+    width: 90%;
+    background: #333333;
+    color: white;
+    border: none;
+    font-family: 'courier new', courier, serif;
+    font-size: 14px;
+    height: 29px;
+}
+
+.terminal__list {
+    padding: 0;
+    list-style-type: none;
+}
+
+.terminal__list li {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.terminal__output {
+
+}
+
+.terminal__error {
+    color: #CF0000;
+}

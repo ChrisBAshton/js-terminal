@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Chris Ashton - Terminal</title>
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+
+        <div class="terminal">
+            <div id="output"></div>
+
+            <form>
+                <span class="terminal__cursor">$</span>
+                <input id="input" type="text" />
+            </form>
+        </div>
+
+        <script src="require.js"></script>
+        <script>
+            (function () {
+                var config = {
+                    baseUrl: '.',
+                    paths : {
+                        jquery : "jquery-2.0.3.min"
+                    },
+                    shim: {
+                        'jquery': {
+                            exports: 'jQuery'
+                        }
+                    }
+                };
+
+                require(config, ['terminal'], function (terminal) {
+                    terminal.init();
+                });
+
+            }());
+        </script>
+    </body>
+</html>
