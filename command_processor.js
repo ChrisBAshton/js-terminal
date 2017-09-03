@@ -144,7 +144,7 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
             listOfCommands = listOfCommands + '</ul>';
 
             screen.stdout(listOfCommands);
-        }
+        },
 
         cmd_more: function (filename) {
             var descriptions = {
