@@ -99,10 +99,10 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
                 firstChar === '.'  ||
                 firstChar === '~'
                 ) {
-                window.location.href = baseUrl;
+                window.top.location.href = baseUrl;
             }
 
-            window.location.href = baseUrl + '/' + args;
+            window.top.location.href = baseUrl + '/' + args;
         },
 
         cmd_clear: function (args) {
