@@ -1,12 +1,18 @@
 define(['jquery', 'command_processor', 'screen'], function ($, command, screen) {
 
     var Terminal = function () {
-        this.input  = $('#input');
+
     };
 
     Terminal.prototype = {
-        
-        init: function () {
+
+        init: function (opts) {
+            this.container = $(opts.container);
+            this.form  = $(opts.form);
+            this.input = $(opts.input);
+            this.output = $(opts.output);
+            screen.init(this.output);
+            command.init(this.output, this.input);
             this.setSizeAndFocusCursor();
             this.listenForEvents();
             this.welcome();
@@ -16,7 +22,7 @@ define(['jquery', 'command_processor', 'screen'], function ($, command, screen) 
             var windowHeight = $(window).height(),
                 maxHeight = (windowHeight - this.input.height() - 50) + 'px';
 
-            $('.terminal').height(windowHeight);
+            this.container.height(windowHeight);
             screen.setHeight(maxHeight);
             this.input.focus();
         },
@@ -25,11 +31,11 @@ define(['jquery', 'command_processor', 'screen'], function ($, command, screen) 
 
             var terminal = this;
 
-            $('.terminal').on('click', function () {
+            this.container.on('click', function () {
                 terminal.input.focus();
             });
 
-            $('form').on('submit', function (e) {
+            this.form.on('submit', function (e) {
                 terminal.processCommand();
                 e.preventDefault();
                 return false;

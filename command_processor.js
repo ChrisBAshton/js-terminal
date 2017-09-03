@@ -31,6 +31,12 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
 
     CommandProcessor.prototype = {
 
+        init: function (output, input) {
+            this.output = output;
+            this.input = input;
+            history.init(this.input);
+        },
+
         clean: function (command) {
             command = command.replace(/</g, '&lt;');
             command = command.replace(/>/g, '&gt;');
@@ -74,7 +80,7 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
                     line.html(line.html() + '.');
                     numberOfDots--;
                     self.dotdotdot(line, numberOfDots);
-                }, 50);           
+                }, 50);
             } else {
                 line.html(line.html() + ' 100%. <br /> <br /> ...just kidding.');
                 this.processingCommand = false;
@@ -87,10 +93,10 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
             // @TODO - doesn't seem to work properly
             if (
                 args      === '..' ||
-                firstChar === ''   || 
-                firstChar === '/'  || 
-                firstChar === '.'  || 
-                firstChar === '~' 
+                firstChar === ''   ||
+                firstChar === '/'  ||
+                firstChar === '.'  ||
+                firstChar === '~'
                 ) {
                 window.location.href = "http://ashton.codes";
             }
@@ -165,19 +171,19 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
             this.processingCommand = true;
             screen.stdout("Trying to sabotage my site, eh?");
             screen.stdout("Downloading virus");
-            writeOnSameLine = $('#output .terminal__output').last();
+            writeOnSameLine = this.output.find('.terminal__output').last();
             this.dotdotdot(writeOnSameLine, 10);
         },
 
         cmd_sudo: function (args) {
-            screen.stdout("You are a guest user. No sudo for you."); 
+            screen.stdout("You are a guest user. No sudo for you.");
         },
 
         download: function (args) {
             this.processingCommand = true;
             screen.stdout("Downloading 3.4Gb of awesomeness");
-            writeOnSameLine = $('#output .terminal__output').last();
-            this.dotdotdot(writeOnSameLine, 100);            
+            writeOnSameLine = this.output.find('.terminal__output').last();
+            this.dotdotdot(writeOnSameLine, 100);
         },
 
         hello: function (args) {

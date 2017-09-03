@@ -1,10 +1,13 @@
 define(['jquery'], function ($) {
 
-    var Screen = function () {
-        this.output = $('#output');
+    var Screen = function (output) {
     };
 
     Screen.prototype = {
+
+        init: function (output) {
+            this.output = output;
+        }
 
         outputToTerminal: function (type, contents) {
             this.output.append('<p class="' + type +'">' + contents + '</p>');

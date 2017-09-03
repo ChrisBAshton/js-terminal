@@ -26,6 +26,10 @@ define(['jquery'], function ($) {
 
     CommandHistory.prototype = {
 
+        init: function (input) {
+            this.input = input;
+        }
+
         log: function (command) {
             this.history.push(command);
             this.lastCommand = this.history.length;
@@ -42,7 +46,7 @@ define(['jquery'], function ($) {
         populateInput: function () {
             if (this.history.length > 0) {
                 this.validateLastCommandIndex();
-                $('#input').val(this.history[this.lastCommand]);
+                this.input.val(this.history[this.lastCommand]);
             }
         },
 
@@ -51,7 +55,7 @@ define(['jquery'], function ($) {
                 maxIndex = this.history.length - 1;
 
             this.lastCommand = (this.lastCommand > maxIndex) ? maxIndex : this.lastCommand;
-            this.lastCommand = (this.lastCommand < minIndex) ? minIndex : this.lastCommand; 
+            this.lastCommand = (this.lastCommand < minIndex) ? minIndex : this.lastCommand;
         }
     }
 

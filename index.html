@@ -30,9 +30,13 @@
                 };
 
                 require(config, ['terminal'], function (terminal) {
-                    terminal.init();
+                    terminal.init({
+                        container: '.terminal',
+                        input: '#input',
+                        output: '#output',
+                        form: 'form',
+                    });
                 });
-
             }());
         </script>
     </body>
