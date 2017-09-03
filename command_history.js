@@ -28,7 +28,7 @@ define(['jquery'], function ($) {
 
         init: function (input) {
             this.input = input;
-        }
+        },
 
         log: function (command) {
             this.history.push(command);

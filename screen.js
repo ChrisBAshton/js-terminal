@@ -7,7 +7,7 @@ define(['jquery'], function ($) {
 
         init: function (output) {
             this.output = output;
-        }
+        },
 
         outputToTerminal: function (type, contents) {
             this.output.append('<p class="' + type +'">' + contents + '</p>');
