@@ -6,6 +6,7 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
 
         // NB: functions beginning with cmd_ are real BASH commands
         this.validCommands = {
+            'commands':     'cmd_cmds',
             'cat':          'cmd_more',
             'cd':           'cmd_cd',
             'clear':        'cmd_clear',
@@ -130,20 +131,20 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
         },
 
         cmd_ls: function (args) {
-            if (args === '/usr/bin/local') {
-                var listOfCommands = "<ul class='terminal__list'>";
-
-                for (var key in this.validCommands) {
-                    listOfCommands = listOfCommands + '<li>' + key + '</li>';
-                }
-
-                listOfCommands = listOfCommands + '</ul>';
-
-                screen.stdout(listOfCommands);
-            } else {
-                screen.stdout("<ul class='terminal__list'><li>about</li><li>blog</li><li>portfolio</li><li>contact</li></ul>");
-            }
+            screen.stdout("<ul class='terminal__list'><li>about</li><li>blog</li><li>portfolio</li><li>contact</li></ul>");
         },
+
+        cmd_cmds: function () {
+            var listOfCommands = "<ul class='terminal__list'>";
+
+            for (var key in this.validCommands) {
+                listOfCommands = listOfCommands + '<li>' + key + '</li>';
+            }
+
+            listOfCommands = listOfCommands + '</ul>';
+
+            screen.stdout(listOfCommands);
+        }
 
         cmd_more: function (filename) {
             var descriptions = {
@@ -192,8 +193,8 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
         },
 
         help: function () {
-            screen.stdout("If you've never used the command line before, this will be quite alien to you. I suggest you type `cd ..` ('Change Directory to parent directory'), which will redirect you back to the homepage, or you can simply press the back button in your browser.");
-            screen.stdout("If you're comfortable with the UNIX command line, then go ahead and have a play around. If you're stuck, you can see all possible system commands by typing `ls /usr/bin/local`");
+            screen.stdout("Try typing `ls` to list the pages available, then redirect to a page by typing, for example, `cd about`. You can pull up this terminal on any page with SHIFT+T.");
+            screen.stdout("For a full list of recognised commands, type `commands`. Have fun!");
         }
     };
 
