@@ -89,6 +89,7 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
 
         cmd_cd: function (args) {
             var firstChar = args.length > 0 ? args.charAt(0):'';
+            var baseUrl = "//ashton.codes";
 
             // @TODO - doesn't seem to work properly
             if (
@@ -98,10 +99,10 @@ define(['jquery', 'screen', 'command_history'], function ($, screen, history) {
                 firstChar === '.'  ||
                 firstChar === '~'
                 ) {
-                window.location.href = "http://ashton.codes";
+                window.location.href = baseUrl;
             }
 
-            window.location.href = '/' + args;
+            window.location.href = baseUrl + '/' + args;
         },
 
         cmd_clear: function (args) {
